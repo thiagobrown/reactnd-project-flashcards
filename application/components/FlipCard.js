@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Text, StyleSheet, View, Animated, TouchableOpacity, Dimensions } from 'react-native'
 import { black, lightRed } from '../common/colors';
 
 export default class FlipCard extends Component {
     state = {
         animatedValue: new Animated.Value(0)
+    }
+
+    static propTypes = {
+        question: PropTypes.object.isRequired,
+        showAnswer: PropTypes.bool.isRequired,
+        onShowAnswer: PropTypes.func.isRequired
     }
 
     componentWillMount() {
@@ -91,6 +98,7 @@ export default class FlipCard extends Component {
 }
 
 const width = Dimensions.get('window').width * 0.8
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

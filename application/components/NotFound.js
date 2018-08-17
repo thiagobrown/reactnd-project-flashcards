@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { View, StyleSheet, Text, Platform } from 'react-native'
 import { grey } from '../common/colors'
 import { Ionicons } from '@expo/vector-icons'
 
-export default function NotFound({ message = '', children }) {
+const NotFound = ({ message = '', children }) => {
     return (
         <View style={styles.center}>
             <Ionicons
@@ -16,6 +17,11 @@ export default function NotFound({ message = '', children }) {
     )
 }
 
+NotFound.propTypes = {
+    message: PropTypes.string,
+    children: PropTypes.node
+  }
+
 const styles = StyleSheet.create({
     center: {
         flex: 1,
@@ -23,3 +29,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     }
 })
+
+export default NotFound

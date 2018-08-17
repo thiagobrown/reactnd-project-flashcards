@@ -65,12 +65,11 @@ class NewDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     padding: 30,
     backgroundColor: white
   },
   title: {
-    fontSize: 42,
+    fontSize: 32,
     textAlign: 'center',
     marginBottom: 20
   },

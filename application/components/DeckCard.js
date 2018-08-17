@@ -1,13 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { white } from '../common/colors'
 
-export default function DeckCard({ children, style = {} }) {
+const DeckCard = ({ children, style = {} }) => {
     return (
         <View style={[styles.card, { ...style }]}>
             {children}
         </View>
     )
+}
+
+DeckCard.propTypes = {
+    children: PropTypes.node,
+    style: PropTypes.object
 }
 
 const styles = StyleSheet.create({
@@ -19,3 +25,5 @@ const styles = StyleSheet.create({
         backgroundColor: white
     }
 })
+
+export default DeckCard

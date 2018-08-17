@@ -1,9 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
-
 import { white, lightGrey } from '../common/colors'
 
-export default function PercentageCircle({ children, percentage = 0, backgroundColor, radius = 100 }) {
+const PercentageCircle = ({ children, percentage = 0, backgroundColor, radius = 100 }) => {
     return (
         <View style={[styles.circle, { width: radius * 2, height: radius * 2, borderRadius: radius }]}>
             <View style={[styles.leftWrap, { left: 0, width: radius, height: radius * 2 }]}>
@@ -53,6 +53,13 @@ export default function PercentageCircle({ children, percentage = 0, backgroundC
     )
 }
 
+PercentageCircle.propTypes = {
+   children: PropTypes.node,
+   percentage: PropTypes.number,
+   backgroundColor: PropTypes.string.isRequired,
+   radius: PropTypes.number
+  }
+
 const styles = StyleSheet.create({
     circle: {
         overflow: 'hidden',
@@ -81,3 +88,5 @@ const styles = StyleSheet.create({
         backgroundColor: white
     }
 })
+
+export default PercentageCircle

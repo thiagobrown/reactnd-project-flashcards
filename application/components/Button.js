@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { black, white } from '../common/colors'
 
-export default function Button({ textValue = '', styleButton = {}, styleTextButton = {}, onPress }) {
+const Button = ({ textValue = '', styleButton = {}, styleTextButton = {}, onPress }) => {
   return (
     <TouchableOpacity
       style={[styles.button, { ...styleButton }]}
@@ -10,6 +11,13 @@ export default function Button({ textValue = '', styleButton = {}, styleTextButt
       <Text style={[styles.text, { ...styleTextButton }]}>{textValue}</Text>
     </TouchableOpacity>
   )
+}
+
+Button.propTypes = {
+  textValue: PropTypes.string,
+  styleButton: PropTypes.object,
+  styleTextButton: PropTypes.object,
+  onPress: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -32,3 +40,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 })
+
+export default Button

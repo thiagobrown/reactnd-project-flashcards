@@ -18,7 +18,7 @@ class ViewDeck extends Component {
   onNavigateToQuiz = (title) => () => this.props.navigation.navigate('Quiz', { deck: title })
 
   render() {
-    const { deck, navigation } = this.props
+    const { deck } = this.props
 
     if (!deck) {
       return <NotFound message='Not found deck' />
