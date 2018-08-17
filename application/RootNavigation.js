@@ -59,9 +59,6 @@ const RootNavigation = createStackNavigator(
     {
         Home: {
             screen: Tabs,
-            navigationOptions: {
-                header: null
-            }
         },
         ViewDeck: {
             screen: ViewDeck
@@ -75,6 +72,7 @@ const RootNavigation = createStackNavigator(
     }, {
         initialRouteName: 'Home',
         navigationOptions: {
+            title: 'FlashCards',
             headerForceInset: { top: 'never', bottom: 'never' },
             headerTintColor: white,
             headerStyle: {

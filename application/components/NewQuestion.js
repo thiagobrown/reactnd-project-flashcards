@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Alert, Text, TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native'
 
-import { insertQuestionToDeck } from '../api'
 import { addQuestion } from '../actions'
-
+import { insertQuestionToDeck } from '../common/api'
 import { white, grey, black } from '../common/colors'
 import Button from './Button'
 

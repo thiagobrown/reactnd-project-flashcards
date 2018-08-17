@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { HeaderBackButton } from 'react-navigation'
 
-import DeckCard from './DeckCard'
 import Button from './Button'
 import NotFound from './NotFound'
-import { white, black } from '../common/colors'
+import { white, black, grey } from '../common/colors'
 
 class ViewDeck extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -26,17 +25,20 @@ class ViewDeck extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <DeckCard {...deck} styleTitle={{ fontSize: 32 }} styleSubTitle={{ fontSize: 20 }} />
+      <View style={[styles.container, { paddingBottom: 40 }]}>
+        <View style={styles.container}>
+          <Text style={{ fontSize: 32, color: black }}>{deck.title}</Text>
+          <Text style={{ fontSize: 20, color: grey }}>{deck.questions.length} cards</Text>
+        </View>
         <Button textValue='Add Card' onPress={this.onNavigateToAddCard(deck.title)} />
         {
           deck.questions
           && deck.questions.length > 0
           && <Button
-                textValue='Start Quiz'
-                onPress={this.onNavigateToQuiz(deck.title)}
-                styleButton={{ backgroundColor: black }}
-                styleTextButton={{ color: white }} />
+            textValue='Start Quiz'
+            onPress={this.onNavigateToQuiz(deck.title)}
+            styleButton={{ backgroundColor: black }}
+            styleTextButton={{ color: white }} />
         }
       </View>
     )
@@ -48,8 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: white,
-    alignItems: 'center',
-    paddingBottom: 20
+    alignItems: 'center'
   }
 })
 

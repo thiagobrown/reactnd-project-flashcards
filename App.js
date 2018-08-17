@@ -6,8 +6,13 @@ import store from './application/store'
 import RootNavigation from './application/RootNavigation'
 import RootStatusBar from './application/components/RootStatusBar'
 import { blueGrey } from './application/common/colors'
+import { setLocalNotification } from './application/common/notification'
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={store}>

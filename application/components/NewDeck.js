@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Text, TextInput, StyleSheet, KeyboardAvoidingView, Alert } from 'react-native'
 
 import { addDeck } from '../actions'
-import { insertDeck } from '../api'
-
+import { insertDeck } from '../common/api'
 import { grey, black, white } from '../common/colors'
 import Button from './Button';
 

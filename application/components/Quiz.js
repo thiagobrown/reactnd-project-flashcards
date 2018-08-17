@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Text, StyleSheet, View } from 'react-native'
 
 import { white, lightGreen, green, lightRed, red, blue, blueGrey } from '../common/colors'
-
+import { setLocalNotification, clearLocalNotification } from '../common/notification'
 import FlipCard from './FlipCard'
 import Button from './Button'
 import PercentageCircle from './PercentageCircle'
@@ -29,23 +29,34 @@ class Quiz extends Component {
 
   onNavigateToViewDeck = () => this.props.navigation.goBack()
 
+  onFinish = (questions, correctAnswers) => {
+    clearLocalNotification().then(setLocalNotification)
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.container}>
+          <PercentageCircle backgroundColor={blue} radius={70} percentage={Math.round((correctAnswers / questions) * 100)}>
+            <Text style={{ fontSize: 22 }}>{Math.round((correctAnswers / questions) * 100)}%</Text>
+          </PercentageCircle>
+          <Text style={{ fontSize: 22, paddingTop: 20 }}>Finish</Text>
+          <Text style={{ fontSize: 18, paddingTop: 20 }}>You scored {correctAnswers} out of {questions} questions!</Text>
+        </View>
+        <Button textValue='Restart Quiz' styleButton={{ backgroundColor: blue, borderColor: blueGrey }} styleTextButton={{ color: white }} onPress={this.onReset} />
+        <Button textValue='Back to Deck' onPress={this.onNavigateToViewDeck} />
+      </View>
+    )
+  }
+
   render() {
     const { deck } = this.props
     const { currentIndex, showAnswer, correctAnswers } = this.state
 
-    if ((currentIndex + 1) > deck.questions.length) {
+    if (deck.questions.length === 0) {
+      return <NotFound message='Not found Quiz' />
+    }
 
-      return (
-        <View style={[styles.container, { alignItems: 'center', justifyContent: 'center' }]}>
-          <PercentageCircle backgroundColor={blue} percentage={Math.round((correctAnswers / deck.questions.length) * 100)}>
-            <Text style={{ fontSize: 22 }}>{Math.round((correctAnswers / deck.questions.length) * 100)}%</Text>
-          </PercentageCircle>
-          <Text style={{ fontSize: 22, paddingTop: 20 }}>Finish</Text>
-          <Text style={{ fontSize: 18, paddingTop: 20, paddingBottom: 20 }}>You scored {correctAnswers} out of {deck.questions.length} questions!</Text>
-          <Button textValue='Restart Quiz' styleButton={{ backgroundColor: blue, borderColor: blueGrey }} styleTextButton={{ color: white }} onPress={this.onReset} />
-          <Button textValue='Back to Deck' onPress={this.onNavigateToViewDeck} />
-        </View>
-      )
+    if (!(currentIndex < deck.questions.length)) {
+      return this.onFinish(deck.questions.length, correctAnswers)
     }
 
     return (
@@ -73,7 +84,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    paddingBottom: 40
+    paddingBottom: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
 

@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { AppLoading } from 'expo'
 import { Entypo } from '@expo/vector-icons'
 
-import { getAllDecks } from '../api'
 import { fetchDecks } from '../actions'
-import { black, lightRed, white } from '../common/colors'
+import { getAllDecks } from '../common/api'
+import { black, lightRed, white, grey } from '../common/colors'
 
 import DeckCard from './DeckCard'
 import TextButton from './TextButton'
@@ -50,7 +50,10 @@ class Decks extends Component {
         <TouchableOpacity
             style={{ borderBottomWidth: 1, borderBottomColor: black }}
             onPress={() => this.props.navigation.navigate('ViewDeck', { deck: item.title })}>
-            <DeckCard {...item} />
+            <DeckCard>
+                <Text style={{ fontSize: 20, color: black }}>{item.title}</Text>
+                <Text style={{ fontSize: 12, color: grey }}>{item.questions.length} cards</Text>
+            </DeckCard>
         </TouchableOpacity>
     )
 

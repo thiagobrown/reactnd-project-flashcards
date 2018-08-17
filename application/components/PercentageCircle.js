@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
-import { grey, white, lightGrey } from '../common/colors'
+import { white, lightGrey } from '../common/colors'
 
 export default function PercentageCircle({ children, percentage = 0, backgroundColor, radius = 100 }) {
     return (
@@ -79,6 +79,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: white
-    },
-
+    }
 })
